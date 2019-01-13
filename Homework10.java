@@ -1,3 +1,7 @@
+/*
+Andrew Cascio
+*/
+
 import java.util.ArrayList;
 
 public class Homework10 {
@@ -7,8 +11,13 @@ public class Homework10 {
 	 * 2D array of int values with the designated rows and
 	 * columns
 	 */
-	public Homework10(int rows, int cols) {
 
+
+	 private int[][] arr;
+
+	public Homework10(int rows, int cols) {
+			int[][] tester = new int[rows][cols];
+			arr = tester;
 	}
 
 	/* Fill the stored array with increasing values. The
@@ -17,13 +26,23 @@ public class Homework10 {
 	 * row major order. Return the filled array
 	 */
 	public int[][] problem1(int n) {
-
+			for(int r = 0; r < arr.length; r++) {
+					for(int c = 0; c < arr[0].length; c++) {
+							arr[r][c] = n;
+							n++;
+					}
+			}
+			return arr;
 	}
 
 	/* Return row r of the stored array
 	 */
 	public int[] problem2(int r) {
-
+			int[] row = new int[arr[0].length];
+			for (int c = 0; c < arr[0].length; c++) {
+					row[c] = arr[r][c];
+			}
+			return row;
 	}
 
 	/* Find and return the sum of the indicated cell and its
@@ -32,21 +51,40 @@ public class Homework10 {
 	 * or more neighbors
 	 */
 	public int problem3(int r, int c) {
-
+			int sum = arr[r][c];
+			for(int a = r - 1; a <= r + 1; a += 2) {
+					if(!(a < 0) && !(a > arr.length - 1)) {
+							sum += arr[a][c];
+					}
+			}
+			for(int b = c - 1; b <= c + 1; b += 2) {
+					if(!(b < 0) && !(b > arr[0].length - 1)) {
+							sum += arr[r][b];
+					}
+			}
+			return sum;
 	}
 
 	/* Create and return an ArrayList that contains the
 	 * elements from the indicated column
 	 */
 	public ArrayList<Integer> problem4(int c) {
-
+			ArrayList<Integer> elements = new ArrayList<Integer>();
+			for(int r = 0; r < arr.length; r++) {
+					elements.add(arr[r][c]);
+			}
+			return elements;
 	}
 
 	/* Calculate and return the sum of the integers in
 	 * the supplied ArrayList
 	 */
 	public int problem5(ArrayList<Integer> aList) {
-
+			int sum = 0;
+			for(int i = 0; i < aList.size(); i ++) {
+					sum += aList.get(i);
+			}
+			return sum;
 	}
 
 	public static void main(String[] args) {
